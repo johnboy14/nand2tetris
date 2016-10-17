@@ -34,13 +34,13 @@
   D;JGT // if (KBD > 0) Fill Display
 
 (EMPTYDISPLAY)
-  @fillval
+  @fillorempty
   M=0
   @LOOP
   0;JEQ
 
 (FILLDISPLAY)
-  @fillval
+  @fillorempty
   M=-1
   @LOOP
   0;JEQ
@@ -54,14 +54,16 @@
   @REFRESH
   D;JEQ
 
-  @fillval
+  //Fill OR Empty address
+  @fillorempty
   D=M
   @address
   A=M
   M=D
+
+  // add 1 to address for next iteration
   @address
   D=M
-
   @1
   D=D+A
   @address
@@ -72,4 +74,4 @@
   M=M+1
 
   @LOOP
-  D;JGT
+  0;JMP
