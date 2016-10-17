@@ -15,7 +15,7 @@ M=0
 M=0
 
 (LOOP)
-  //if (i==n) goto END
+  //if (i==R0) goto END
   @i
   D=M
   @R0
