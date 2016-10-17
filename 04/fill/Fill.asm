@@ -11,18 +11,14 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.
 
-(REFRESH)
   @8192
   D=D+A
   @n
   M=D //set n = 256 rows * 32 words
 
+(REFRESH)
   //initialise i = 0
   @i
-  M=0
-
-  //reset address
-  @address
   M=0
 
   @SCREEN
@@ -32,18 +28,18 @@
 
   @KBD
   D=M
-  @EMPTY
-  D;JEQ // Empty Display
-  @FILL
-  D;JGT // Fill Display
+  @EMPTYDISPLAY
+  D;JEQ // if (KBD == 0) Empty Display
+  @FILLDISPLAY
+  D;JGT // if (KBD > 0) Fill Display
 
-(EMPTY)
+(EMPTYDISPLAY)
   @fillval
   M=0
   @LOOP
   0;JEQ
 
-(FILL)
+(FILLDISPLAY)
   @fillval
   M=-1
   @LOOP
