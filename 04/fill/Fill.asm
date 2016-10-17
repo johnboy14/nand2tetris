@@ -11,32 +11,69 @@
 // "white" in every pixel;
 // the screen should remain fully clear as long as no key is pressed.
 
-  @0
-  D=M
-  @INFINITE_LOOP
-  D;JLE
-  @counter
-  M=D
+(REFRESH)
+  @8192
+  D=D+A
+  @n
+  M=D //set n = 256 rows * 32 words
+
+  //initialise i = 0
+  @i
+  M=0
+
+  //reset address
+  @address
+  M=0
+
   @SCREEN
   D=A
   @address
-  M=D
+  M=D //set address to base address of SCREEN Memory Map
+
+  @KBD
+  D=M
+  @EMPTY
+  D;JEQ // Empty Display
+  @FILL
+  D;JGT // Fill Display
+
+(EMPTY)
+  @fillval
+  M=0
+  @LOOP
+  0;JEQ
+
+(FILL)
+  @fillval
+  M=-1
+  @LOOP
+  0;JEQ
 
 (LOOP)
+  //if (i > n) GOTO REFRESH
+  @i
+  D=M
+  @n
+  D=D-M
+  @REFRESH
+  D;JEQ
+
+  @fillval
+  D=M
   @address
   A=M
-  M=-1
+  M=D
   @address
   D=M
+
   @1
   D=D+A
   @address
   M=D
-  @counter
-  MD=M-1
+
+  //i++
+  @i
+  M=M+1
+
   @LOOP
   D;JGT
-
-(INFINITE_LOOP)
-  @INFINITE_LOOP
-  0;JMP
