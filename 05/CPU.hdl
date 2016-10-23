@@ -38,45 +38,64 @@ CHIP CPU {
         addressM[15],    // Address in data memory (of M)
         pc[15];          // address of next instruction
 
+    //Instruction[0] = J3 if < 0
+    //Instruction[1] = J2 if = 0
+    //Instruction[2] = J1 if > 0
+
+    //Instruction[3] = d3 write to memory
+    //Instruction[4] = d2 load to D Register
+    //Instruction[5] = d1 load to A Register
+
+    //Instruction[6] = c6 no
+    //Instruction[7] = c5 f
+    //Instruction[8] = c4 ny
+    //Instruction[9] = c5 zy
+    //Instruction[10] = c3 nx
+    //Instruction[11] = c2 zx
+
+    //instruction[12] = a
+    //instruction[15] = opcode 1= C Instruction, 0 = A Instruction
+
     PARTS:
     //Set contents of A Register,
-    //if (instruction[0]==0) out=instruction else out=outM
-    Mux16(a=instruction, b=outM, sel=instruction[0] out=aMuxOut);
+    //if (instruction[15]==0) out=instruction else out=aluOut
+    Mux16(a=instruction, b=aluOut, sel=instruction[15], out=aMuxOut);
+
     //Set A Register to aMuxOut
-    Register(in=aMuxOut, load=aMuxOut[11],
-             out[1..15]=addressM, out=aRegisterOut);
+    ARegister(in=aMuxOut, load=instruction[5], out[0..14]=addressM, out=aRegisterOut);
+
     //Set D Register to outM
-    Register(in=outM, load=outM[12], out=dRegisterOut);
+    DRegister(in=aluOut, load=instruction[5], out=dRegisterOut);
 
     //Set ALU Inputs
-    Mux16(a=aRegisterOut, b=inM, sel=inM[3], out=aluYInput);
-    Alu(x=dRegisterOut, y=aluYInput,
-        zx=dRegisterOut[4],nx=dRegisterOut[5],
-        zy=dRegisterOut[6],ny=dRegisterOut[7],
-        f=dRegisterOut[8], no=dRegisterOut[9],
-        out=outM, outM[13]=writeM, zr=outZr, ng=outNg);
+    Mux16(a=aRegisterOut, b=inM, sel=instruction[12], out=aluYInput);
+    ALU(x=dRegisterOut, y=aluYInput,
+        zx=instruction[11], nx=instruction[10],
+        zy=instruction[9], ny=instruction[8],
+        f=instruction[7], no=instruction[6],
+        out=outM, out=aluOut, out[12]=writeM, zr=outZr, ng=outNg);
 
   //Was the ALU Output Positive?
   Or(a=outZr, b=outNg, out=orOutput);
   Not(in=orOutput, out=positive);
 
   //JGT
-  AND(a=instruction[15], b=positive, out=outJGT);
+  And(a=instruction[0], b=positive, out=outJGT);
   //JEQ
-  AND(a=instruction[14], b=outZr, out=outJEQ);
+  And(a=instruction[1], b=outZr, out=outJEQ);
   //JGE
-  OR(a=outJGT, b=outJEQ, out=outJGE);
+  Or(a=outJGT, b=outJEQ, out=outJGE);
   //JLT
-  AND(a=instruction[13], b=outNg, out=outJLT);
+  And(a=instruction[2], b=outNg, out=outJLT);
   //JNE
-  OR(a=outJTL, b=outJGT, out=outJNE);
+  Or(a=outJLT, b=outJGT, out=outJNE);
   //JLE
-  OR(a=outJTL, b=outJEQ, out=outJLE);
+  Or(a=outJLT, b=outJEQ, out=outJLE);
   //JMP
-  OR(a=outJLE, b=outJGT, out=outJMP);
+  Or(a=outJLE, b=outJGT, out=outJMP);
   //INC
   Not(in=outJMP, out=inc);
 
   //Set PC according to reset and value of A Register Output
-  PC(in=aRegisterOut, load=outJMP, inc=inc, reset=reset);
+  PC(in=aRegisterOut, load=outJMP, inc=inc, reset=reset, out[0..14]=pc);
 }
