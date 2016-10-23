@@ -56,7 +56,27 @@ CHIP CPU {
         f=dRegisterOut[8], no=dRegisterOut[9],
         out=outM, outM[13]=writeM, zr=outZr, ng=outNg);
 
-  //What do I do with zr and ng???
+  //Was the ALU Output Positive?
+  Or(a=outZr, b=outNg, out=orOutput);
+  Not(in=orOutput, out=positive);
+
+  //JGT
+  AND(a=instruction[15], b=positive, out=outJGT);
+  //JEQ
+  AND(a=instruction[14], b=outZr, out=outJEQ);
+  //JGE
+  OR(a=outJGT, b=outJEQ, out=outJGE);
+  //JLT
+  AND(a=instruction[13], b=outNg, out=outJLT);
+  //JNE
+  OR(a=outJTL, b=outJGT, out=outJNE);
+  //JLE
+  OR(a=outJTL, b=outJEQ, out=outJLE);
+  //JMP
+  OR(a=outJLE, b=outJGT, out=outJMP);
+  //INC
+  Not(in=outJMP, out=inc);
 
   //Set PC according to reset and value of A Register Output
+  PC(in=aRegisterOut, load=outJMP, inc=inc, reset=reset);
 }
