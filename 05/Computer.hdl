@@ -19,7 +19,7 @@ CHIP Computer {
     IN reset;
 
     PARTS:
-    //ROM32K built-in chip
+    //ROM32K built-in chip WayHey!!
     ROM32K(address=pc, out=instruction);
     CPU(instruction=instruction, reset=reset, inM=inM, outM=outM, writeM=writeM, addressM=addressM,pc=pc);
     Memory(in=outM, load=writeM, address=addressM, out=inM);
