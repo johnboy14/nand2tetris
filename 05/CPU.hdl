@@ -90,8 +90,8 @@ CHIP CPU {
   And(a=isCInstruction, b=instruction[3], out=writeM);
 
   //Was the ALU Output Positive?
-  Or(a=outZr, b=outNg, out=outZeroOrNegative);
-  Not(in=outZeroOrNegative, out=positive);
+  Or(a=outZr, b=outNg, out=aluOutZeroOrNegative);
+  Not(in=aluOutZeroOrNegative, out=positive);
 
   //JEQ
   And(a=instruction[1], b=outZr, out=outJEQ);
