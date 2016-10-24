@@ -101,10 +101,6 @@ CHIP CPU {
   And(a=instruction[0], b=positive, out=outJGT);
   //JLE
   Or(a=outJLT, b=outJEQ, out=outJLE);
-  //JGE
-  Or(a=outJGT, b=outJEQ, out=outJGE);
-  //JNE
-  Or(a=outJLT, b=outJGT, out=outJNE);
   //JMP
   Or(a=outJLE, b=outJGT, out=outJMP);
 
