@@ -1,0 +1,1024 @@
+REPL Instructions
+
+Code can be entered at the bottom and executed by pressing shift+enter.
+
+Try it now by typing (+ 1 1) in the bottom section and pressing shift+enter.
+
+Working in another Clojure file and sending forms to the REPL is the most efficient way to work. Use the following key bindings to send code to the REPL. See the settings for more keybindings.
+
+ctrl-alt-, then b
+Execute block. Finds the block of Clojure code your cursor is in and executes that.
+
+ctrl-alt-, s
+Executes the selection. Sends the selected text to the REPL.
+
+You can disable this help text in the settings.
+Atom Ink does not appear to be installed. Install it to get a better REPL experience.
+Starting REPL with lein in /home/johnboy14/coursera/nand2tetris/06/assembler
+#error {
+ :cause java.io
+ :via
+ [{:type clojure.lang.Compiler$CompilerException
+   :message java.lang.ClassNotFoundException: java.io, compiling:(assembler/core.clj:1:1)
+   :at [clojure.lang.Compiler load Compiler.java 7391]}
+  {:type java.lang.ClassNotFoundException
+   :message java.io
+   :at [java.net.URLClassLoader findClass URLClassLoader.java 381]}]
+ :trace
+ [[java.net.URLClassLoader findClass URLClassLoader.java 381]
+  [clojure.lang.DynamicClassLoader findClass DynamicClassLoader.java 69]
+  [java.lang.ClassLoader loadClass ClassLoader.java 424]
+  [clojure.lang.DynamicClassLoader loadClass DynamicClassLoader.java 77]
+  [java.lang.ClassLoader loadClass ClassLoader.java 357]
+  [java.lang.Class forName0 Class.java -2]
+  [java.lang.Class forName Class.java 348]
+  [clojure.lang.RT classForName RT.java 2168]
+  [clojure.lang.RT classForNameNonLoading RT.java 2181]
+  [assembler.core$eval14$loading__5569__auto____15 invoke core.clj 1]
+  [assembler.core$eval14 invokeStatic core.clj 1]
+  [assembler.core$eval14 invoke core.clj 1]
+  [clojure.lang.Compiler eval Compiler.java 6927]
+  [clojure.lang.Compiler eval Compiler.java 6916]
+  [clojure.lang.Compiler load Compiler.java 7379]
+  [clojure.lang.RT loadResourceScript RT.java 372]
+  [clojure.lang.RT loadResourceScript RT.java 363]
+  [clojure.lang.RT load RT.java 453]
+  [clojure.lang.RT load RT.java 419]
+  [clojure.core$load$fn__5677 invoke core.clj 5893]
+  [clojure.core$load invokeStatic core.clj 5892]
+  [clojure.core$load doInvoke core.clj 5876]
+  [clojure.lang.RestFn invoke RestFn.java 408]
+  [clojure.core$load_one invokeStatic core.clj 5697]
+  [clojure.core$load_one invoke core.clj 5692]
+  [clojure.core$load_lib$fn__5626 invoke core.clj 5737]
+  [clojure.core$load_lib invokeStatic core.clj 5736]
+  [clojure.core$load_lib doInvoke core.clj 5717]
+  [clojure.lang.RestFn applyTo RestFn.java 142]
+  [clojure.core$apply invokeStatic core.clj 648]
+  [clojure.core$load_libs invokeStatic core.clj 5774]
+  [clojure.core$load_libs doInvoke core.clj 5758]
+  [clojure.lang.RestFn applyTo RestFn.java 137]
+  [clojure.core$apply invokeStatic core.clj 648]
+  [clojure.core$require invokeStatic core.clj 5796]
+  [clojure.core$require doInvoke core.clj 5796]
+  [clojure.lang.RestFn invoke RestFn.java 408]
+  [user$eval5 invokeStatic form-init3080167547239898758.clj 1]
+  [user$eval5 invoke form-init3080167547239898758.clj 1]
+  [clojure.lang.Compiler eval Compiler.java 6927]
+  [clojure.lang.Compiler eval Compiler.java 6916]
+  [clojure.lang.Compiler eval Compiler.java 6916]
+  [clojure.lang.Compiler load Compiler.java 7379]
+  [clojure.lang.Compiler loadFile Compiler.java 7317]
+  [clojure.main$load_script invokeStatic main.clj 275]
+  [clojure.main$init_opt invokeStatic main.clj 277]
+  [clojure.main$init_opt invoke main.clj 277]
+  [clojure.main$initialize invokeStatic main.clj 308]
+  [clojure.main$null_opt invokeStatic main.clj 342]
+  [clojure.main$null_opt invoke main.clj 339]
+  [clojure.main$main invokeStatic main.clj 421]
+  [clojure.main$main doInvoke main.clj 384]
+  [clojure.lang.RestFn invoke RestFn.jav
+a 421]
+  [clojure.lang.Var invoke Var.java 383]
+  [clojure.lang.AFn applyToHelper AFn.java 156]
+  [clojure.lang.Var applyTo Var.java 700]
+  [clojure.main main main.java 37]]}
+nREPL server started on port 40812 on host 127.0.0.1 - nrepl://127.0.0.1:40812
+Refreshing code...
+No user namespace defined. Defaulting to clojure.tools.namespace.repl/refresh.
+
+:reloading (assembler.core assembler.core-test)
+:error-while-loading assembler.core
+java.lang.ClassNotFoundException: java.io, compiling:(assembler/core.clj:1:1)
+Refresh complete
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+user=>
+nil
+(-main "/home/johnboy14/coursera/nand2tetris/06/add/Add.asm")
+assembler.core=>
+nil
+[0]
+assembler.core=>
+[0]
+(slurp args)
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: args in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:10:3) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.IllegalArgumentException: Cannot open <("/home/johnboy14/coursera/nand2tetris/06/add/Add.asm")> as an InputStream., compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:16:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+"// This file is part of www.nand2tetris.org\r\n// and the book \"The Elements of Computing Systems\"\r\n// by Nisan and Schocken, MIT Press.\r\n// File name: projects/06/add/Add.asm\r\n\r\n// Computes R0 = 2 + 3  (R0 refers to RAM[0])\r\n\r\n@2\r\nD=A\r\n@3\r\nD=D+A\r\n@0\r\nM=D\r\n"
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.ClassCastException: clojure.lang.PersistentList cannot be cast to clojure.lang.Named, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["// This file is part of www.nand2tetris.org" "// and the book \"The Elements of Computing Systems\"" "// by Nisan and Schocken, MIT Press." "// File name: projects/06/add/Add.asm" "" "// Computes R0 = 2 + 3  (R0 refers to RAM[0])" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+(re-find (re-pattern "\\d+") "abc123def")
+assembler.core=>
+"123"
+(re-pattern "^[^\//]")
+RuntimeException Unsupported escape character: \/  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+#object[clojure.core$_SLASH_ 0x7e6dae4a "clojure.core$_SLASH_@7e6dae4a"]
+RuntimeException Unmatched delimiter: ]  clojure.lang.Util.runtimeException (Util.java:221)
+RuntimeException EOF while reading string  clojure.lang.Util.runtimeException (Util.java:221)
+(re-find (re-pattern "^[^\/\/]") "abc123def")
+RuntimeException Unsupported escape character: \/  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+\/
+RuntimeException Unmatched delimiter: ]  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+") "
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: abc123def in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+RuntimeException EOF while reading string  clojure.lang.Util.runtimeException (Util.java:221)
+(re-pattern "[^//].+")
+assembler.core=>
+#"[^//].+"
+(re-find (re-pattern "[^//].+") "abc123def")
+assembler.core=>
+"abc123def"
+(re-find (re-pattern "[^//].+") "//")
+assembler.core=>
+nil
+(re-find (re-pattern "[^//].+") "//dd")
+assembler.core=>
+"dd"
+(re-pattern "[^//]
+RuntimeException EOF while reading string  clojure.lang.Util.runtimeException (Util.java:221)
+(re-pattern "[^//].")
+assembler.core=>
+#"[^//]."
+(re-find (re-pattern "[^//].") "//dd")
+assembler.core=>
+"dd"
+(re-find (re-pattern "[^//].") "  //dd")
+assembler.core=>
+"  "
+(re-find (re-pattern "[^//].") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+" /"
+(re-find (re-pattern "[^//].2") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+"nd2"
+(re-find (re-pattern "[^//].1") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+nil
+REPL already running
+(re-find (re-pattern "[^//].1") " This file is part of www.nand2tetris.org")
+assembler.core=>
+nil
+(re-find (re-pattern "[^//].+") " This file is part of www.nand2tetris.org")
+assembler.core=>
+" This file is part of www.nand2tetris.org"
+(re-find (re-pattern "[^//].+") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+" // This file is part of www.nand2tetris.org"
+(first " // This file is part of www.nand2tetris.org")
+assembler.core=>
+\space
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+"// This file is part of www.nand2tetris.org"
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+"// This file is part of www.nand2tetris.org"
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)"
+                     " This file is part of www.nand2tetris.org"))
+ArityException Wrong number of args (2) passed to: core/re-pattern  clojure.lang.AFn.throwArity (AFn.java:429)
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)"
+                     " // This file is part of www.nand2tetris.org"))
+ArityException Wrong number of args (2) passed to: core/re-pattern  clojure.lang.AFn.throwArity (AFn.java:429)
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)"))
+ClassCastException java.util.regex.Pattern cannot be cast to java.util.regex.Matcher  clojure.core/re-find (core.clj:4723)
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)"))
+ClassCastException java.util.regex.Pattern cannot be cast to java.util.regex.Matcher  clojure.core/re-find (core.clj:4723)
+(re-find (re-pattern "(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)"))
+ClassCastException java.util.regex.Pattern cannot be cast to java.util.regex.Matcher  clojure.core/re-find (core.clj:4723)
+(re-find (re-pattern "[^//].+") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+" // This file is part of www.nand2tetris.org"
+(re-find (re-pattern "/\\*(?:.|[\\n\\r])*?\\*/") " // This file is part of www.nand2tetris.org")
+assembler.core=>
+nil
+(re-find (re-pattern "/\\*(?:.|[\\n\\r])*?\\*/") "This file is part of www.nand2tetris.org")
+assembler.core=>
+nil
+(re-find (re-pattern "^[\/\/]{2}") "This file is part of www.nand2tetris.org")
+RuntimeException Unsupported escape character: \/  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+\/
+RuntimeException Unmatched delimiter: ]  clojure.lang.Util.runtimeException (Util.java:221)
+RuntimeException Map literal must contain an even number of forms  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+") "
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: This in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: file in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: is in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: part in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: of in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.ClassNotFoundException: www.nand2tetris.org, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+RuntimeException EOF while reading string  clojure.lang.Util.runtimeException (Util.java:221)
+(re-find (re-pattern "^[^\/\/]{2}") "This file is part of www.nand2tetris.org")
+RuntimeException Unsupported escape character: \/  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+\/
+RuntimeException Unmatched delimiter: ]  clojure.lang.Util.runtimeException (Util.java:221)
+RuntimeException Map literal must contain an even number of forms  clojure.lang.Util.runtimeException (Util.java:221)
+assembler.core=>
+") "
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: This in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: file in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: is in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: part in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: of in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+CompilerException java.lang.ClassNotFoundException: www.nand2tetris.org, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:1:4475) 
+RuntimeException EOF while reading string  clojure.lang.Util.runtimeException (Util.java:221)
+(defn- not-comment? [line]
+  (-> (str/trim line)
+      (subs 0 1)))
+assembler.core=>
+#'assembler.core/not-comment?
+(not-comment? "//This file is part of www.nand2tetris.org")
+assembler.core=>
+"/"
+(not-comment? "//This file is part of www.nand2tetris.org")
+assembler.core=>
+"/"
+(str/trim line)
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: line in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:10:7) 
+(defn- not-comment? [line]
+  (-> (str/trim line)
+      (subs 0 2)))
+assembler.core=>
+#'assembler.core/not-comment?
+(not-comment? "//This file is part of www.nand2tetris.org")
+assembler.core=>
+"//"
+(not-comment? "This file is part of www.nand2tetris.org")
+assembler.core=>
+"Th"
+(= "//" "//")
+assembler.core=>
+true
+(= "//" "/")
+assembler.core=>
+false
+(defn- not-comment? [line]
+  (-> (str/trim line)
+      (subs 0 2)
+      (not= "//")))
+assembler.core=>
+#'assembler.core/not-comment?
+(not-comment? "//This file is part of www.nand2tetris.org")
+assembler.core=>
+false
+(not-comment? "This file is part of www.nand2tetris.org")
+assembler.core=>
+true
+(not-comment? " //This file is part of www.nand2tetris.org")
+assembler.core=>
+false
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.StringIndexOutOfBoundsException: String index out of range: 2, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:22:1) 
+(subs "" 0 2)
+StringIndexOutOfBoundsException String index out of range: 2  java.lang.String.substring (String.java:1963)
+(subs "a" 0 2)
+StringIndexOutOfBoundsException String index out of range: 2  java.lang.String.substring (String.java:1963)
+(subs "aa" 0 2)
+assembler.core=>
+"aa"
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.StringIndexOutOfBoundsException: String index out of range: 2, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:22:1) 
+(defn- first-2-chars [line]
+  (if (> (count line) 2)
+      (subs line 0 2)))
+assembler.core=>
+#'assembler.core/first-2-chars
+(first-2-chars "//")
+assembler.core=>
+nil
+(defn- first-2-chars [line]
+  (if (> (count line) 2)
+      (subs line 0 2)))
+assembler.core=>
+#'assembler.core/first-2-chars
+(first-2-chars "//")
+assembler.core=>
+nil
+(count "//")
+assembler.core=>
+2
+(defn- first-2-chars [line]
+  (if (>= (count line) 2)
+      (subs line 0 2)))
+assembler.core=>
+#'assembler.core/first-2-chars
+(first-2-chars "//")
+assembler.core=>
+"//"
+(first-2-chars "")
+assembler.core=>
+nil
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.StringIndexOutOfBoundsException: String index out of range: 2, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:26:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/06/add/Add.asm
+
+// Computes R0 = 2 + 3  (R0 refers to RAM[0])
+
+@2
+D=A
+@3
+D=D+A
+@0
+M=D
+assembler.core=>
+["" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/06/add/Add.asm
+
+// Computes R0 = 2 + 3  (R0 refers to RAM[0])
+
+@2
+D=A
+@3
+D=D+A
+@0
+M=D
+assembler.core=>
+["" ""]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["" ""]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+// This file is part of www.nand2tetris.org 43
+// and the book "The Elements of Computing Systems" 51
+// by Nisan and Schocken, MIT Press. 36
+// File name: projects/06/add/Add.asm 37
+ 0
+// Computes R0 = 2 + 3  (R0 refers to RAM[0]) 45
+ 0
+@2 2
+D=A 3
+@3 2
+D=D+A 5
+@0 2
+M=D 3
+assembler.core=>
+["" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+// This file is part of www.nand2tetris.org 43
+// and the book "The Elements of Computing Systems" 51
+// by Nisan and Schocken, MIT Press. 36
+// File name: projects/06/add/Add.asm 37
+ 0
+// Computes R0 = 2 + 3  (R0 refers to RAM[0]) 45
+ 0
+@2 2
+D=A 3
+@3 2
+D=D+A 5
+@0 2
+M=D 3
+assembler.core=>
+["" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+(remove-whitespace "/home/johnboy14/coursera/nand2tetris/06/add/Add.asm")
+assembler.core=>
+["// This file is part of www.nand2tetris.org" "// and the book \"The Elements of Computing Systems\"" "// by Nisan and Schocken, MIT Press." "// File name: projects/06/add/Add.asm" "" "// Computes R0 = 2 + 3  (R0 refers to RAM[0])" "" "@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+(defn- remove-whitespace [file]
+  (->> (str/split-lines (slurp file))
+       (remove str/blank?)))
+assembler.core=>
+#'assembler.core/remove-whitespace
+(remove-whitespace "/home/johnboy14/coursera/nand2tetris/06/add/Add.asm")
+assembler.core=>
+("// This file is part of www.nand2tetris.org" "// and the book \"The Elements of Computing Systems\"" "// by Nisan and Schocken, MIT Press." "// File name: projects/06/add/Add.asm" "// Computes R0 = 2 + 3  (R0 refers to RAM[0])" "@2" "D=A" "@3" "D=D+A" "@0" "M=D")
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["@2" "D=A" "@3" "D=D+A" "@0" "M=D"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+[nil nil nil nil nil nil]
+(first "@2")
+assembler.core=>
+\@
+(case (first "@2") \@ 1 2)
+assembler.core=>
+1
+(case (first "D=A") \@ 1 2)
+assembler.core=>
+2
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: translate-A-instruction in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:16:8) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException clojure.lang.ArityException: Wrong number of args (0) passed to: core/translate-C-instruction, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:30:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+[nil nil nil nil nil nil]
+(second "@2")
+assembler.core=>
+\2
+(read-int (second "@2"))
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: read-int in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:32:1) 
+(read-str (second "@2"))
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: read-str in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:32:1) 
+(str (second "@2"))
+assembler.core=>
+"2"
+(read-string (second "@2"))
+ClassCastException java.lang.Character cannot be cast to java.lang.String  clojure.core/read-string (core.clj:3677)
+(read-string (str (second "@2")))
+assembler.core=>
+2
+(rest "@22")
+assembler.core=>
+(\2 \2)
+(reduce (comp read-string str)(rest "@22"))
+assembler.core=>
+22
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+[\2 nil \3 nil \0 nil]
+(translate-A-instruction "@2")
+assembler.core=>
+\2
+(type (translate-A-instruction "@2"))
+assembler.core=>
+java.lang.Character
+(defn- translate-A-instruction [inst]
+  (-> (reduce (comp str read-string)(rest inst))))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(type (translate-A-instruction "@2"))
+assembler.core=>
+java.lang.Character
+(translate-A-instruction "@2")
+assembler.core=>
+\2
+(reduce (comp str read-string)(rest "@22"))
+ClassCastException java.lang.Character cannot be cast to java.lang.String  clojure.core/read-string (core.clj:3677)
+(reduce (comp read-string str)(rest "@22"))
+assembler.core=>
+22
+(translate-A-instruction "@22")
+ClassCastException java.lang.Character cannot be cast to java.lang.String  clojure.core/read-string (core.clj:3677)
+(reduce (comp read-string str)(rest "@22"))
+assembler.core=>
+22
+(translate-A-instruction "@22")
+ClassCastException java.lang.Character cannot be cast to java.lang.String  clojure.core/read-string (core.clj:3677)
+(defn- translate-A-instruction [inst]
+  (-> (reduce (comp read-string str)(rest inst))))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@22")
+assembler.core=>
+22
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: inst in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:34:31) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+[\2 nil \3 nil \0 nil]
+(translate-A-instruction "@2")
+assembler.core=>
+\2
+(rest "@22")
+assembler.core=>
+(\2 \2)
+(rest "@2")
+assembler.core=>
+(\2)
+(comp str)
+assembler.core=>
+#object[clojure.core$str 0x714b7c19 "clojure.core$str@714b7c19"]
+(reduce (comp str)(rest "@22"))
+assembler.core=>
+"22"
+(reduce (comp str)(rest "@22"))
+assembler.core=>
+"22"
+(reduce (comp str)(rest "@2"))
+assembler.core=>
+\2
+(reduce (comp str)(rest "@2 "))
+assembler.core=>
+"2 "
+(reduce (comp #(str "" %)(rest "@22")))
+ArityException Wrong number of args (1) passed to: core/reduce  clojure.lang.AFn.throwArity (AFn.java:429)
+(reduce #(comp (str "" %)(rest "@22")))
+ArityException Wrong number of args (1) passed to: core/reduce  clojure.lang.AFn.throwArity (AFn.java:429)
+(reduce #(str "" %)(rest "@22"))
+ArityException Wrong number of args (2) passed to: core/eval9007/fn--9008  clojure.lang.AFn.throwArity (AFn.java:429)
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))
+       (reduce read-string)))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@2")
+assembler.core=>
+"2"
+(translate-A-instruction "@22")
+ClassCastException java.lang.String cannot be cast to clojure.lang.IPersistentMap  clojure.lang.LispReader.installPlatformFeature (LispReader.java:214)
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.ClassCastException: java.lang.String cannot be cast to clojure.lang.IPersistentMap, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:36:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["2" nil "3" nil "0" nil]
+(reduce int)
+ArityException Wrong number of args (1) passed to: core/reduce  clojure.lang.AFn.throwArity (AFn.java:429)
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["2" nil "3" nil "0" nil]
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))
+       (reduce int)))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@1")
+assembler.core=>
+"1"
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@1")
+assembler.core=>
+("1")
+(defn- translate-A-instruction [inst]
+  (->> (reduce str (rest inst))))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@1")
+assembler.core=>
+\1
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))(reduce str)))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@1")
+assembler.core=>
+"1"
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))
+       (reduce str)))
+assembler.core=>
+#'assembler.core/translate-A-instruction
+(translate-A-instruction "@11")
+assembler.core=>
+"11"
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+"11"
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["2" nil "3" nil "0" nil]
+(defn- translate-A-instruction [inst]
+  (->> (map str (rest inst))
+       (reduce str)
+       (clj-format nil "~b")))
+CompilerException java.lang.RuntimeException: Unable to resolve symbol: clj-format in this context, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:8:8) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.RuntimeException: No such var: p/clj-format, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:9:8) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["2" nil "3" nil "0" nil]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["2" nil "3" nil "0" nil]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["10" nil "11" nil "0" nil]
+(Long/numberOfLeadingZeros 2)
+assembler.core=>
+62
+(Long/numberOfLeadingZeros 0)
+assembler.core=>
+64
+(Short/numberOfLeadingZeros 0)
+CompilerException java.lang.IllegalArgumentException: No matching method: numberOfLeadingZeros, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:41:1) 
+(Long/numberOfLeadingZeros 16)
+assembler.core=>
+59
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+59
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["10" "111" "11" "111" "0" "111"]
+(short 2)
+assembler.core=>
+2
+(int (short 2) "0xffff")
+CompilerException clojure.lang.ArityException: Wrong number of args (2) passed to: core/int--inliner--4477, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:40:1) 
+(str (short 2) "0xffff")
+assembler.core=>
+"20xffff"
+(p/cl-format nil "~b")
+Exception Not enough arguments for format definition  clojure.pprint/next-arg (cl_format.clj:93)
+(p/cl-format nil "~b" 2)
+assembler.core=>
+"10"
+(p/cl-format nil "base 7  ~7r  with width and zero pad  ~7,15,'0r" 63 63)
+assembler.core=>
+"base 7  120  with width and zero pad  000000000000120"
+(p/cl-format nil "base 2  ~2r  with width and zero pad  ~2,15,'0r" 2 2)
+assembler.core=>
+"base 2  10  with width and zero pad  000000000000010"
+(p/cl-format nil "~2,15,'0r" 2 2)
+assembler.core=>
+"000000000000010"
+(p/cl-format nil "~2,15,'0r" 22 22)
+assembler.core=>
+"000000000010110"
+(count (p/cl-format nil "~2,15,'0r" 22 22))
+assembler.core=>
+15
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["000000000000010" "111" "000000000000011" "111" "000000000000000" "111"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "111" "0000000000000011" "111" "0000000000000000" "111"]
+This command requires you to position the cursor on a Clojure var.
+(str/index-of "D=" "=")
+assembler.core=>
+1
+(subs 0 (str/index-of "D=M" "=") "D=M")
+ClassCastException java.lang.Long cannot be cast to java.lang.String  clojure.core/subs (core.clj:4799)
+(subs "D=M" 0 (str/index-of "D=M" "="))
+assembler.core=>
+"D"
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [dest (subs inst 0 (str/index-of inst "="))]
+    dest))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1")
+assembler.core=>
+"D"
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        jmp (subs inst jmp-prefix (count inst))]
+    [dest jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" ";JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (- (str/index-of inst ";") 1)
+        dest (subs inst 0 equals-idx)
+        jmp (subs inst jmp-prefix (count inst))]
+    [dest jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "1;JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        jmp (subs inst jmp-prefix (count inst))]
+    [dest jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" ";JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (+ 1 (str/index-of inst ";"))
+        dest (subs inst 0 equals-idx)
+        jmp (subs inst jmp-prefix (count inst))]
+    [dest jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        comp (subs inst equals-idx jmp-prefix)
+        jmp (subs inst (+ 1 jmp-prefix) (count inst))]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "=M+1" "JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        comp (subs inst (+ 1 equals-idx) jmp-prefix)
+        jmp (subs inst (+ 1 jmp-prefix) (count inst))]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(translate-C-instruction "D=M+1")
+NullPointerException   clojure.lang.RT.intCast (RT.java:1177)
+(str/index-of "D=M+1" ";")
+assembler.core=>
+nil
+REPL already running
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        comp (subs inst (+ 1 equals-idx) jmp-prefix)
+        jmp (and jmp-prefix (subs inst (+ 1 jmp-prefix) (count inst)))]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1")
+NullPointerException   clojure.lang.RT.intCast (RT.java:1177)
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (subs inst 0 equals-idx)
+        comp (subs inst (+ 1 equals-idx) jmp-prefix)
+        jmp (subs inst (+ 1 jmp-prefix) (count inst))]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(defn- dest-inst [inst]
+  (subs inst 0 (str/index-of inst "=")))
+assembler.core=>
+#'assembler.core/dest-inst
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (or (str/index-of inst ";"))
+        dest (dest-inst inst)
+        comp (subs inst (+ 1 equals-idx) jmp-prefix)
+        jmp (subs inst (+ 1 jmp-prefix) (count inst))]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(defn- dest-inst [inst]
+  (subs inst 0 (str/index-of inst "=")))
+
+(defn- comp-inst [inst]
+  (let [equals-idx (+ 1 (str/index-of inst "="))
+        jmp-prefix (str/index-of inst ";")]
+    (if jmp-prefix
+      (subs inst equals-idx jmp-prefix)
+      (subs inst equals-idx (count inst)))))
+
+(defn- jmp-inst [inst]
+  (let [jmp-prefix (+ 1 (str/index-of inst ";"))]
+    (if jmp-prefix
+      (subs inst jmp-prefix (count inst)))))
+
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (or (str/index-of inst ";"))
+        dest (dest-inst inst)
+        comp (comp-inst inst)
+        jmp (jmp-inst inst)]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(translate-C-instruction "D=M+1")
+NullPointerException   clojure.lang.Numbers.ops (Numbers.java:1013)
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [equals-idx (str/index-of inst "=")
+        jmp-prefix (str/index-of inst ";")
+        dest (dest-inst inst)
+        comp (comp-inst inst)
+        jmp (jmp-inst inst)]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(translate-C-instruction "D=M+1")
+NullPointerException   clojure.lang.Numbers.ops (Numbers.java:1013)
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [dest (dest-inst inst)
+        comp (comp-inst inst)
+        jmp (jmp-inst inst)]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(defn- dest-inst [inst]
+  (println "dest" inst)
+  (subs inst 0 (str/index-of inst "=")))
+
+(defn- comp-inst [inst]
+  (println "comp" inst)
+  (let [equals-idx (+ 1 (str/index-of inst "="))
+        jmp-prefix (str/index-of inst ";")]
+    (if jmp-prefix
+      (subs inst equals-idx jmp-prefix)
+      (subs inst equals-idx (count inst)))))
+
+(defn- jmp-inst [inst]
+  (println "jmp" inst)
+  (let [jmp-prefix (+ 1 (str/index-of inst ";"))]
+    (if jmp-prefix
+      (subs inst jmp-prefix (count inst)))))
+
+(defn- translate-C-instruction
+  "Translates C instruction into 16 bit binary representation"
+  [inst]
+  (let [dest (dest-inst inst)
+        comp (comp-inst inst)
+        jmp (jmp-inst inst)]
+    [dest comp jmp]))
+assembler.core=>
+#'assembler.core/translate-C-instruction
+(translate-C-instruction "D=M+1;JGE")
+dest D=M+1;JGE
+comp D=M+1;JGE
+jmp D=M+1;JGE
+assembler.core=>
+["D" "M+1" "JGE"]
+(translate-C-instruction "D=M+1")
+dest D=M+1
+comp D=M+1
+jmp D=M+1
+NullPointerException   clojure.lang.Numbers.ops (Numbers.java:1013)
+(defn- jmp-inst [inst]
+  (let [jmp-prefix (+ 1 (str/index-of inst ";"))]
+    (println jmp-prefix)
+    (if jmp-prefix
+      (subs inst jmp-prefix (count inst)))))
+assembler.core=>
+#'assembler.core/jmp-inst
+(translate-C-instruction "D=M+1")
+dest D=M+1
+comp D=M+1
+NullPointerException   clojure.lang.Numbers.ops (Numbers.java:1013)
+(defn- dest-inst [inst]
+  (subs inst 0 (str/index-of inst "=")))
+
+(defn- comp-inst [inst]
+  (let [equals-idx (+ 1 (str/index-of inst "="))
+        jmp-prefix (str/index-of inst ";")]
+    (if jmp-prefix
+      (subs inst equals-idx jmp-prefix)
+      (subs inst equals-idx (count inst)))))
+
+(defn- jmp-inst [inst]
+  (let [jmp-prefix (+ 1 (str/index-of inst ";"))]
+    (println jmp-prefix)
+    (if jmp-prefix
+      (subs inst jmp-prefix (count inst)))))
+assembler.core=>
+#'assembler.core/jmp-inst
+(str/index-of "D=M+1" ";")
+assembler.core=>
+nil
+(str/index-of "D=M+1" ";")
+assembler.core=>
+nil
+(+ 1 nil)
+NullPointerException   clojure.lang.Numbers.ops (Numbers.java:1013)
+(defn- dest-inst [inst]
+  (subs inst 0 (str/index-of inst "=")))
+
+(defn- comp-inst [inst]
+  (let [equals-idx (+ 1 (str/index-of inst "="))
+        jmp-prefix (str/index-of inst ";")]
+    (if jmp-prefix
+      (subs inst equals-idx jmp-prefix)
+      (subs inst equals-idx (count inst)))))
+
+(defn- jmp-inst [inst]
+  (let [jmp-prefix (str/index-of inst ";")]
+    (if jmp-prefix
+      (subs inst (+ 1 jmp-prefix) (count inst)))))
+assembler.core=>
+#'assembler.core/jmp-inst
+(translate-C-instruction "D=M+1;JGE")
+assembler.core=>
+["D" "M+1" "JGE"]
+(translate-C-instruction "D=M+1")
+assembler.core=>
+["D" "M+1" nil]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.NullPointerException, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:40:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "111" "0000000000000011" "111" "0000000000000000" "111"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "111" "0000000000000011" "111" "0000000000000000" "111"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "111" "0000000000000011" "111" "0000000000000000" "111"]
+(def comp-table
+  {"0"   "0101010"
+   "1"   "0111111"
+   "-1"  "0111010"
+   "D"   "0001100"
+   "A"   "0110000"
+   "!D"  "0001101"
+   "!A"  "0110001"
+   "-D"  "0001111"
+   "-A"  "0110011"
+   "D+1" "0011111"
+   "A+1" "0110111"
+   "D-1" "0001110"
+   "A-1" "0110010"
+   "D+A" "0000010"
+   "D-A" "0010011"
+   "A-D" "0000111"
+   "D&A" "0000000"
+   "D|A" "0010101"})
+assembler.core=>
+#'assembler.core/comp-table
+("0" comp-table)
+ClassCastException java.lang.String cannot be cast to clojure.lang.IFn  assembler.core/eval14143 (form-init3080167547239898758.clj:26)
+(comp-table "0")
+assembler.core=>
+"0101010"
+(comp-table "D+1")
+assembler.core=>
+"0011111"
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000" "0000000000000011" "1110000010" "0000000000000000" "1110001100"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000" "0000000000000011" "1110000010" "0000000000000000" "1110001100"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000" "0000000000000011" "1110000010" "0000000000000000" "1110001100"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000" "0000000000000011" "1110000010" "0000000000000000" "1110001100"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+CompilerException java.lang.RuntimeException: Too many arguments to def, compiling:(/home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj:36:1) 
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000010" "0000000000000011" "1110000010010" "0000000000000000" "1110001100001"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000010" "0000000000000011" "1110000010010" "0000000000000000" "1110001100001"]
+Loading File /home/johnboy14/coursera/nand2tetris/06/assembler/src/assembler/core.clj
+assembler.core=>
+["0000000000000010" "1110110000010000" "0000000000000011" "1110000010010000" "0000000000000000" "1110001100001000"]
+--------------------
