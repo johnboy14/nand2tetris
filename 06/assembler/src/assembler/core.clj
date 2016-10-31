@@ -176,9 +176,10 @@
    (if (< current-inst (count insts))
      (let [inst (nth insts current-inst)
            variable-name (str (reduce str (rest inst)))]
+       (println inst variable-name current-inst mem-address (and (isVariable? inst) (contains? symbols variable-name)))
        (if (and (isVariable? inst) (contains? symbols variable-name))
-         (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address))
-         (recur symbols insts (inc current-inst) mem-address)))
+         (recur symbols insts (inc current-inst) mem-address)
+         (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address))))
      symbols))
   ([symbols insts]
     (add-variables-to-symbol-table symbols insts 0 16)))
