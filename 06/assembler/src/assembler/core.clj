@@ -182,7 +182,7 @@
        (println inst variable-name current-inst mem-address (and (isVariable? inst) (contains? symbols variable-name)))
        (if (a-instruction? inst)
         (if (and (isVariable? inst) (contains? symbols variable-name))
-          (recur symbols insts (inc current-inst) (symbols variable-name))
+          (recur symbols insts (inc current-inst) mem-address)
           (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address)))
         (recur symbols insts (inc current-inst) mem-address)))
      symbols))
