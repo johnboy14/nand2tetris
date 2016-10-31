@@ -128,13 +128,11 @@
        (remove str/blank?)))
 
 (defn- not-comment? [line]
-  (-> (str/trim line)
-      (subs 0 2)
+  (-> (subs line 0 2)
       (not= "//")))
 
 (defn- not-label? [line]
-  (-> (str/trim line)
-      (subs 0 1)
+  (-> (subs line 0 1)
       (not= "(")))
 
 (defn- translate-to-binary [symbol-table inst]
@@ -183,6 +181,7 @@
   "Entry Point"
   [& args]
   (let [without-comments-whitespace (->> (remove-whitespace (first args))
+                                         (mapv str/trim)
                                          (filterv not-comment?))
         updated-symbol-table        (-> (add-labels-to-symbol-table symbol-table without-comments-whitespace)
                                         (add-variables-to-symbol-table without-comments-whitespace))
