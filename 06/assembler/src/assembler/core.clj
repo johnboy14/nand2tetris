@@ -53,6 +53,46 @@
    "JLE" "110"
    "JMP" "111"})
 
+(def symbol-table
+  {"SP"     "0"
+   "LCL"    "1"
+   "ARG"    "2"
+   "THIS"   "3"
+   "THAT"   "4"
+   "R0"     "0"
+   "R1"     "1"
+   "R2"     "2"
+   "R3"     "3"
+   "R4"     "4"
+   "R5"     "5"
+   "R6"     "6"
+   "R7"     "7"
+   "R8"     "8"
+   "R9"     "9"
+   "R10"    "10"
+   "R11"    "11"
+   "R12"    "12"
+   "R13"    "13"
+   "R14"    "14"
+   "R15"    "15"
+   "SCREEN" "16384"
+   "KBD"    "24576"})
+
+(defn- remove-mid-line-comments [line]
+  (if-let [idx (str/index-of line "//")]
+    (-> (subs line 0 idx)
+        str/trim)
+    line))
+
+(defn- isLabel? [inst]
+  (= \( (first inst)))
+
+(defn- isVariable? [inst]
+  (and (= \@ (first inst)) (not (Character/isDigit (second inst)))))
+
+(defn- int->16bit-a-inst [n]
+  (str "0" (p/cl-format nil "~2,15,'0r" n)))
+
 (defn- dest-inst [inst]
   (let [equals-idx (str/index-of inst "=")]
     (if equals-idx
@@ -71,8 +111,6 @@
     (if jmp-prefix
       (subs inst (+ 1 jmp-prefix) (count inst)))))
 
-(defn- translate-comp-inst [inst])
-
 (defn- translate-C-instruction
   "Translates C instruction into 16 bit binary representation"
   [inst]
@@ -83,25 +121,29 @@
 
 (defn- translate-A-instruction
   "Translates A instruction into 16 bit binary representation"
-  [inst]
-  (->> (map str (rest inst))
-       (reduce str)
-       read-string
-       (p/cl-format nil "~2,15,'0r")
-       (str "0")))
+  [symbol-table inst]
+  (let [a-inst (->> (map str (rest inst))
+                    (reduce str))]
+    (if (isVariable? inst)
+      (if (contains? symbol-table a-inst)
+        (int->16bit-a-inst (read-string (symbol-table a-inst))))
+      (int->16bit-a-inst (read-string a-inst)))))
 
 (defn- remove-whitespace [file]
   (->> (str/split-lines (slurp file))
        (remove str/blank?)))
 
 (defn- not-comment? [line]
-  (-> (str/trim line)
-      (subs 0 2)
+  (-> (subs line 0 2)
       (not= "//")))
 
-(defn- translate-to-binary [inst]
+(defn- not-label? [line]
+  (-> (subs line 0 1)
+      (not= "(")))
+
+(defn- translate-to-binary [symbol-table inst]
   (case (first inst)
-    \@ (translate-A-instruction inst)
+    \@ (translate-A-instruction symbol-table inst)
     (translate-C-instruction inst)))
 
 (defn- write-to-file [seq file]
@@ -109,12 +151,49 @@
     (doseq [l seq]
       (.write wr (str l "\n")))))
 
+(defn- add-labels-to-symbol-table
+  "Extract Symbols from Instructions and update symbol table with the new symbol and the
+   address of the next instruction"
+  ([symbols insts current-inst label-count]
+   (if (< current-inst (count insts))
+     (let [inst (nth insts current-inst)]
+       (if (isLabel? inst)
+         (let [label-name (subs inst 1 (dec (count inst)))
+               next-inst (str (- (inc current-inst) (inc label-count)))]
+           (if-not (contains? symbols label-name)
+             (recur (assoc symbols label-name next-inst)
+                    insts (inc current-inst) (inc label-count))
+             (recur symbols insts (inc current-inst) label-count)))
+         (recur symbols insts (inc current-inst) label-count)))
+     symbols))
+  ([symbols insts]
+   (add-labels-to-symbol-table symbols insts 0 0)))
+
+(defn- add-variables-to-symbol-table
+  "If A Instruction and non numeric, check symbol table for match,
+   else add to symbol table at current memory address"
+  ([symbols insts current-inst mem-address]
+   (if (< current-inst (count insts))
+     (let [inst (nth insts current-inst)
+           variable-name (str (reduce str (rest inst)))]
+       (if (and (isVariable? inst) (contains? symbols variable-name))
+         (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address))
+         (recur symbols insts (inc current-inst) mem-address)))
+     symbols))
+  ([symbols insts]
+    (add-variables-to-symbol-table symbols insts 0 16)))
+
 (defn -main
   "Entry Point"
   [& args]
-  (let [insts (->> (remove-whitespace (first args))
-                   (filterv not-comment?)
-                   (mapv translate-to-binary))]
+  (let [without-comments-whitespace (->> (remove-whitespace (first args))
+                                         (mapv str/trim)
+                                         (filterv not-comment?)
+                                         (mapv remove-mid-line-comments))
+        updated-symbol-table        (-> (add-labels-to-symbol-table symbol-table without-comments-whitespace)
+                                        (add-variables-to-symbol-table without-comments-whitespace))
+        sanitized-insts             (filterv not-label? without-comments-whitespace)
+        insts (->> (mapv #(translate-to-binary updated-symbol-table %) sanitized-insts))]
     (write-to-file insts (second args))
     (println "Translated " (first args) " to file " (second args))))
 
