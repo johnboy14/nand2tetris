@@ -87,6 +87,9 @@
 (defn- isLabel? [inst]
   (= \( (first inst)))
 
+(defn- a-instruction? [inst]
+  (= \@ (first inst)))
+
 (defn- isVariable? [inst]
   (and (= \@ (first inst)) (not (Character/isDigit (second inst)))))
 
@@ -176,12 +179,15 @@
    (if (< current-inst (count insts))
      (let [inst (nth insts current-inst)
            variable-name (str (reduce str (rest inst)))]
-       (if (and (isVariable? inst) (contains? symbols variable-name))
-         (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address))
-         (recur symbols insts (inc current-inst) mem-address)))
+       (println inst variable-name current-inst mem-address (and (isVariable? inst) (contains? symbols variable-name)))
+       (if (a-instruction? inst)
+        (if (and (isVariable? inst) (contains? symbols variable-name))
+          (recur symbols insts (inc current-inst) (symbols variable-name))
+          (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address)))
+        (recur symbols insts (inc current-inst) mem-address)))
      symbols))
   ([symbols insts]
-    (add-variables-to-symbol-table symbols insts 0 16)))
+   (add-variables-to-symbol-table symbols insts 0 16)))
 
 (defn -main
   "Entry Point"
@@ -210,4 +216,8 @@
     "/home/johnboy14/coursera/nand2tetris/06/rect/RectL.hack")
   (-main
     "/home/johnboy14/coursera/nand2tetris/06/pong/PongL.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/pong/PongL.hack"))
+    "/home/johnboy14/coursera/nand2tetris/06/pong/PongL.hack")
+
+  (-main
+    "/home/johnboy14/coursera/nand2tetris/06/max/Max.asm"
+    "/home/johnboy14/coursera/nand2tetris/06/max/Max.hack"))
