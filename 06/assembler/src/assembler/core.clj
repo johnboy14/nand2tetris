@@ -179,9 +179,9 @@
    (if (< current-inst (count insts))
      (let [inst (nth insts current-inst)
            variable-name (str (reduce str (rest inst)))]
-       (println inst variable-name current-inst mem-address (and (isVariable? inst) (contains? symbols variable-name)))
-       (if (a-instruction? inst)
-        (if (and (isVariable? inst) (contains? symbols variable-name))
+       (println inst variable-name current-inst mem-address (a-instruction? inst) (and (isVariable? inst) (contains? symbols variable-name)))
+       (if (isVariable? inst)
+        (if (contains? symbols variable-name)
           (recur symbols insts (inc current-inst) mem-address)
           (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address)))
         (recur symbols insts (inc current-inst) mem-address)))
@@ -220,4 +220,8 @@
 
   (-main
     "/home/johnboy14/coursera/nand2tetris/06/max/Max.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/max/Max.hack"))
+    "/home/johnboy14/coursera/nand2tetris/06/max/Max.hack")
+
+  (-main
+    "/home/johnboy14/coursera/nand2tetris/06/rect/Rect.asm"
+    "/home/johnboy14/coursera/nand2tetris/06/rect/Rect.hack"))
