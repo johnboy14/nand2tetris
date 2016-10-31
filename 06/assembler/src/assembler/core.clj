@@ -78,6 +78,12 @@
    "SCREEN" "16384"
    "KBD"    "24576"})
 
+(defn- remove-mid-line-comments [line]
+  (if-let [idx (str/index-of line "//")]
+    (-> (subs line 0 idx)
+        str/trim)
+    line))
+
 (defn- isLabel? [inst]
   (= \( (first inst)))
 
@@ -171,8 +177,8 @@
      (let [inst (nth insts current-inst)
            variable-name (str (reduce str (rest inst)))]
        (if (and (isVariable? inst) (contains? symbols variable-name))
-         (recur (assoc symbols variable-name mem-address) insts (inc current-inst) (inc mem-address))
-         (recur symbols insts (inc current-inst) mem-address)))
+         (recur symbols insts (inc current-inst) mem-address)
+         (recur (assoc symbols variable-name mem-address) insts (inc current-inst) (inc mem-address))))
      symbols))
   ([symbols insts]
     (add-variables-to-symbol-table symbols insts 0 16)))
@@ -182,7 +188,8 @@
   [& args]
   (let [without-comments-whitespace (->> (remove-whitespace (first args))
                                          (mapv str/trim)
-                                         (filterv not-comment?))
+                                         (filterv not-comment?)
+                                         (mapv remove-mid-line-comments))
         updated-symbol-table        (-> (add-labels-to-symbol-table symbol-table without-comments-whitespace)
                                         (add-variables-to-symbol-table without-comments-whitespace))
         sanitized-insts             (filterv not-label? without-comments-whitespace)
