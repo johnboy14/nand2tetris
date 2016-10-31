@@ -177,8 +177,8 @@
      (let [inst (nth insts current-inst)
            variable-name (str (reduce str (rest inst)))]
        (if (and (isVariable? inst) (contains? symbols variable-name))
-         (recur symbols insts (inc current-inst) mem-address)
-         (recur (assoc symbols variable-name mem-address) insts (inc current-inst) (inc mem-address))))
+         (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address))
+         (recur symbols insts (inc current-inst) mem-address)))
      symbols))
   ([symbols insts]
     (add-variables-to-symbol-table symbols insts 0 16)))
