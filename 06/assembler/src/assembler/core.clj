@@ -87,9 +87,6 @@
 (defn- isLabel? [inst]
   (= \( (first inst)))
 
-(defn- a-instruction? [inst]
-  (= \@ (first inst)))
-
 (defn- isVariable? [inst]
   (and (= \@ (first inst)) (not (Character/isDigit (second inst)))))
 
@@ -149,11 +146,6 @@
     \@ (translate-A-instruction symbol-table inst)
     (translate-C-instruction inst)))
 
-(defn- write-to-file [seq file]
-  (with-open [wr (clojure.java.io/writer file)]
-    (doseq [l seq]
-      (.write wr (str l "\n")))))
-
 (defn- add-labels-to-symbol-table
   "Extract Symbols from Instructions and update symbol table with the new symbol and the
    address of the next instruction"
@@ -188,6 +180,11 @@
   ([symbols insts]
    (add-variables-to-symbol-table symbols insts 0 16)))
 
+(defn- write-to-file [seq file]
+  (with-open [wr (clojure.java.io/writer file)]
+    (doseq [l seq]
+      (.write wr (str l "\n")))))
+
 (defn -main
   "Entry Point"
   [& args]
@@ -206,25 +203,4 @@
   "Assemble Symbol free Assembly programs"
   (-main
     "/home/johnboy14/coursera/nand2tetris/06/add/Add.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/add/Add.hack")
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/max/MaxL.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/max/MaxL.hack")
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/rect/RectL.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/rect/RectL.hack")
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/pong/PongL.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/pong/PongL.hack")
-
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/max/Max.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/max/Max.hack")
-
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/rect/Rect.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/rect/Rect.hack")
-
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/pong/Pong.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/pong/Pong.hack"))
+    "/home/johnboy14/coursera/nand2tetris/06/add/Add.hack"))
