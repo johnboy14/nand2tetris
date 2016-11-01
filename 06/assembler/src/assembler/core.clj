@@ -87,29 +87,44 @@
 (defn- isLabel? [inst]
   (= \( (first inst)))
 
+(defn- isAInst? [inst]
+  (= \@ (first inst)))
+
+(defn- not-comment? [line]
+  (-> (subs line 0 2)
+      (not= "//")))
+
+(defn- not-label? [line]
+  (-> (subs line 0 1)
+      (not= "(")))
+
 (defn- isVariable? [inst]
-  (and (= \@ (first inst)) (not (Character/isDigit (second inst)))))
+  (and (isAInst? inst) (not (Character/isDigit (second inst)))))
 
 (defn- int->16bit-a-inst [n]
   (str "0" (p/cl-format nil "~2,15,'0r" n)))
 
-(defn- dest-inst [inst]
-  (let [equals-idx (str/index-of inst "=")]
-    (if equals-idx
-      (subs inst 0 equals-idx))))
+(defn- dest-inst
+  "Retrieve Destination instruction from C Instruction"
+  [inst]
+  (if-let [equals-idx (str/index-of inst "=")]
+    (subs inst 0 equals-idx)))
 
-(defn- comp-inst [inst]
+(defn- comp-inst
+  "Retrieve Comp instruction from C Instruction"
+  [inst]
   (let [equals-idx (str/index-of inst "=")
-        equals-idx (if equals-idx (+ 1 equals-idx) 0)
+        equals-idx (if equals-idx (inc equals-idx) 0)
         jmp-prefix (str/index-of inst ";")]
     (if jmp-prefix
       (subs inst equals-idx jmp-prefix)
       (subs inst equals-idx (count inst)))))
 
-(defn- jmp-inst [inst]
-  (let [jmp-prefix (str/index-of inst ";")]
-    (if jmp-prefix
-      (subs inst (+ 1 jmp-prefix) (count inst)))))
+(defn- jmp-inst
+  "Retrieve JMP instruction from C Instruction"
+  [inst]
+  (if-let [jmp-prefix (str/index-of inst ";")]
+    (subs inst (+ 1 jmp-prefix) (count inst))))
 
 (defn- translate-C-instruction
   "Translates C instruction into 16 bit binary representation"
@@ -122,28 +137,18 @@
 (defn- translate-A-instruction
   "Translates A instruction into 16 bit binary representation"
   [symbol-table inst]
-  (let [a-inst (->> (map str (rest inst))
-                    (reduce str))]
-    (if (isVariable? inst)
-      (if (contains? symbol-table a-inst)
-        (int->16bit-a-inst (read-string (symbol-table a-inst))))
+  (let [a-inst (->> (map str (rest inst)) (reduce str))]
+    (if (and (isVariable? inst) (contains? symbol-table a-inst))
+      (int->16bit-a-inst (read-string (symbol-table a-inst)))
       (int->16bit-a-inst (read-string a-inst)))))
 
 (defn- remove-whitespace [file]
   (->> (str/split-lines (slurp file))
        (remove str/blank?)))
 
-(defn- not-comment? [line]
-  (-> (subs line 0 2)
-      (not= "//")))
-
-(defn- not-label? [line]
-  (-> (subs line 0 1)
-      (not= "(")))
-
 (defn- translate-to-binary [symbol-table inst]
-  (case (first inst)
-    \@ (translate-A-instruction symbol-table inst)
+  (if (isAInst? inst)
+    (translate-A-instruction symbol-table inst)
     (translate-C-instruction inst)))
 
 (defn- add-labels-to-symbol-table
@@ -199,9 +204,3 @@
     (write-to-file insts (second args))
     (println "Translated " (first args) " to file " (second args))
     insts))
-
-(comment
-  "Assemble Symbol free Assembly programs"
-  (-main
-    "/home/johnboy14/coursera/nand2tetris/06/add/Add.asm"
-    "/home/johnboy14/coursera/nand2tetris/06/add/Add.hack"))
