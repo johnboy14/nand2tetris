@@ -197,7 +197,8 @@
         sanitized-insts             (filterv not-label? without-comments-whitespace)
         insts (->> (mapv #(translate-to-binary updated-symbol-table %) sanitized-insts))]
     (write-to-file insts (second args))
-    (println "Translated " (first args) " to file " (second args))))
+    (println "Translated " (first args) " to file " (second args))
+    insts))
 
 (comment
   "Assemble Symbol free Assembly programs"
