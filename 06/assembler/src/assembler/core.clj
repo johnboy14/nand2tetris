@@ -84,6 +84,9 @@
         str/trim)
     line))
 
+(defn- extract-variable-name [inst]
+  (str (reduce str (rest inst))))
+
 (defn- isLabel? [inst]
   (= \( (first inst)))
 
@@ -142,10 +145,6 @@
       (int->16bit-a-inst (read-string (symbol-table a-inst)))
       (int->16bit-a-inst (read-string a-inst)))))
 
-(defn- remove-whitespace [file]
-  (->> (str/split-lines (slurp file))
-       (remove str/blank?)))
-
 (defn- translate-to-binary [symbol-table inst]
   (if (isAInst? inst)
     (translate-A-instruction symbol-table inst)
@@ -175,11 +174,12 @@
   ([symbols insts current-inst mem-address]
    (if (< current-inst (count insts))
      (let [inst (nth insts current-inst)
-           variable-name (str (reduce str (rest inst)))]
+           variable-name (extract-variable-name inst)]
        (if (isVariable? inst)
         (if (contains? symbols variable-name)
           (recur symbols insts (inc current-inst) mem-address)
-          (recur (assoc symbols variable-name (str mem-address)) insts (inc current-inst) (inc mem-address)))
+          (recur (assoc symbols variable-name (str mem-address))
+                 insts (inc current-inst) (inc mem-address)))
         (recur symbols insts (inc current-inst) mem-address)))
      symbols))
   ([symbols insts]
@@ -193,14 +193,15 @@
 (defn -main
   "Entry Point"
   [& args]
-  (let [without-comments-whitespace (->> (remove-whitespace (first args))
+  (let [instructions                (str/split-lines (slurp (first args)))
+        without-comments-whitespace (->> (remove str/blank? instructions)
                                          (mapv str/trim)
                                          (filterv not-comment?)
-                                         (mapv remove-mid-line-comments))
-        updated-symbol-table        (-> (add-labels-to-symbol-table symbol-table without-comments-whitespace)
-                                        (add-variables-to-symbol-table without-comments-whitespace))
-        sanitized-insts             (filterv not-label? without-comments-whitespace)
-        insts (->> (mapv #(translate-to-binary updated-symbol-table %) sanitized-insts))]
+                                         (mapv remove-mid-line-comments)) ;;First Pass
+        updated-symbol-table        (->  (add-labels-to-symbol-table symbol-table without-comments-whitespace)
+                                         (add-variables-to-symbol-table without-comments-whitespace))
+        insts-with-labels           (filterv not-label? without-comments-whitespace);;Second Pass
+        insts (->> (mapv #(translate-to-binary updated-symbol-table %) insts-with-labels))] ;;Third Pass
     (write-to-file insts (second args))
     (println "Translated " (first args) " to file " (second args))
     insts))
