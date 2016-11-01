@@ -1,36 +1,15 @@
 # assembler
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Clojure implementation of Assembler used to translate programs written in the Hack assembly language into Hack machine language.
 
 ## Usage
+Specify the .asm file you want translated and the name of the output file.
 
-FIXME: explanation
-
-    $ java -jar assembler-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+    $ lein run <<INPUT_FILE>>.asm <<OUTPUT_FILE>>.hack 
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
